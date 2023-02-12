@@ -1,10 +1,59 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    // name: 'layout',
+    component: () => import('layouts/MyLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'home',
+        props: { slug: 'Home' },
+        alias: '/home',
+        component: () => import('pages/WikiPage.vue'),
+      },
+      {
+        path: 'disegni',
+        name: 'disegni',
+        component: () => import('pages/WikiPage.vue'),
+      },
+      {
+        path: 'autori',
+        name: 'autori',
+        component: () => import('pages/WikiPage.vue'),
+      },
+      {
+        path: 'archivi',
+        name: 'archivi',
+        props: { slug: 'archivi' },
+        component: () => import('pages/WikiPage.vue'),
+      },
+      {
+        path: 'collegi',
+        name: 'collegi',
+        props: { slug: 'collegi' },
+        component: () => import('pages/WikiPage.vue'),
+      },
+      {
+        path: 'cerca',
+        name: 'cerca',
+        props: { slug: 'cerca' },
+        component: () => import('pages/WikiPage.vue'),
+      },
+      {
+        path: 'guida',
+        name: 'guida',
+        props: { slug: 'Guida' },
+        component: () => import('pages/WikiPage.vue'),
+      },
+      {
+        path: 'contatti',
+        name: 'contatti',
+        props: { slug: 'Contatti' },
+        component: () => import('pages/WikiPage.vue'),
+      },
+    ],
   },
 
   // Always leave this as last one,
@@ -13,6 +62,6 @@ const routes: RouteRecordRaw[] = [
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
   },
-];
+]
 
-export default routes;
+export default routes
