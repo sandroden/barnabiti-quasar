@@ -1,29 +1,11 @@
 <template>
   <q-dialog v-model="dialog" @hide="onHide" :maximized="maximized">
-    <q-card id="content" class="q-pa-lg">
-      <q-card-section>
-        <div class="row no-wrap q-gutter-sm">
-          <q-img :src="item.fronte" style="max-width: 600px" />
-          <q-img :src="item.retro" style="max-width: 600px" />
-        </div>
-        <div class="text-h6">{{ item.titolo }}</div>
-        <div class="text-subtitle2">{{ item.autore_nome }}</div>
-        <div class="text-subtitle2">{{ item.collocazione_nome }}</div>
-        <div class="text-subtitle4" v-html="item.descrizione"></div>
-      </q-card-section>
-      <q-slide-transition>
-        <div v-show="expanded">
-          <q-separator />
-          <q-card-section class="text-subitle2"> </q-card-section>
-        </div>
-      </q-slide-transition>
-
-      <q-card-actions align="right" class="text-primary">
-        <div class="text-subtitle4" v-html="item.descrizione"></div>
-        <q-btn flat label="Maximize" @click="toggleMax()" />
-        <q-btn flat label="Close" v-close-popup />
-      </q-card-actions>
-    </q-card>
+    <disegno-detail-card
+      :item="item"
+      :mini="false"
+      full
+      @maximize-dialog="onMaximizeDialog()"
+    ></disegno-detail-card>
   </q-dialog>
 </template>
 
@@ -33,6 +15,7 @@ import { useQuasar } from 'quasar'
 import { Disegno } from '../stores/disegni'
 import { useRouter } from 'vue-router'
 import { onMounted, ref, computed } from 'vue'
+import DisegnoDetailCard from '../components/DisegnoDetailCard.vue'
 
 interface Props {
   // item: Disegno
@@ -55,7 +38,9 @@ const maximized = computed(() => {
 const item = computed(() => {
   return disegnoStore.find(props.id) as Disegno
 })
-function toggleMax() {
+function onMaximizeDialog() {
+  console.log('receiving maximize-dialog')
+
   force_max.value = !force_max.value
 }
 function onHide() {
@@ -67,4 +52,8 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.q-dialog__inner--minimized > div {
+  max-width: 1960px;
+}
+</style>

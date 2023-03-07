@@ -1,45 +1,54 @@
 <template>
   <div>
     <h1>Disegni</h1>
-    <table>
-      <thead>
-        <th>Fronte</th>
-        <th>Retro</th>
-        <th>Autore</th>
-        <th>Titolo</th>
-        <th>Collocazione</th>
-      </thead>
-      <tbody>
-        <tr v-for="dis in disegni" :key="dis.id">
-          <td>
-            <img @click="showDetail(dis.id)" :src="dis.fronte_thumb" />
-          </td>
-          <td>
-            <img :src="dis.retro_thumb" />
-          </td>
-          <td>{{ dis.autore_nome }}</td>
-          <td>{{ dis.titolo }}</td>
-          <td>{{ dis.collocazione_nome }}</td>
-        </tr>
-      </tbody>
-    </table>
 
+    <q-table
+      flat
+      :grid="grid"
+      title="Disegni"
+      :rows="disegnoStore.disegni"
+      row-key="fronte"
+      :columns="columns"
+      :pagination="pagination"
+      :filter="filter"
+      :hide-header="hideHeader"
+      dense
+      class="q-ma-none"
+    >
+      <template v-slot:top-right>
+        <q-toggle dense v-model="grid" icon="fa fa-th" class="q-mr-lg" />
+        <q-input
+          borderless
+          dense
+          debounce="300"
+          v-model="filter"
+          placeholder="Cerca"
+        >
+          <template v-slot:append>
+            <q-icon name="close" @click="filter = ''" class="cursor-pointer" />
+            <q-icon name="mdi-filter-outline" />
+          </template>
+        </q-input>
+      </template>
+      <template #body-cell-fronte="{ row }">
+        <!-- fronte -->
+        <q-td :key="`f${row.id}`">
+          <img :src="row.fronte_thumb" />
+        </q-td>
+      </template>
+      <template #body-cell-retro="{ row }">
+        <!-- fronte -->
+        <q-td :key="`r${row.id}`">
+          <img :src="row.retro_thumb" />
+        </q-td>
+      </template>
+      <template v-slot:item="{ row }">
+        <div class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <disegno-detail-card :item="row" mini></disegno-detail-card>
+        </div>
+      </template>
+    </q-table>
     <router-view />
-    <teleport v-if="activateTeleport" to="#searchInput">
-      <q-input
-        v-model="search"
-        placeholder="Cerca"
-        label-color="primary"
-        dense
-        debounce="300"
-        clearable
-        dark
-      >
-        <template v-slot:append>
-          <q-icon name="search" />
-        </template>
-      </q-input>
-    </teleport>
   </div>
 </template>
 
@@ -47,16 +56,67 @@
 import { useDisegnoStore } from '../stores/disegni'
 import { onMounted, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import DisegnoDetailCard from '../components/DisegnoDetailCard.vue'
 
 const disegnoStore = useDisegnoStore()
-const search = ref<string>('')
+const filter = ref<string>('')
 const activateTeleport = ref(0)
 const router = useRouter()
 const grid = ref<boolean>(true)
-
+const columns = [
+  {
+    label: '',
+    name: 'fronte',
+    field: 'fronte',
+    align: 'left',
+    sortable: false,
+  },
+  {
+    label: '',
+    name: 'retro',
+    field: 'retro',
+    align: 'left',
+    sortable: false,
+  },
+  {
+    label: 'autore',
+    name: 'autore',
+    field: 'autore_nome',
+    align: 'left',
+    sortable: true,
+  },
+  {
+    label: 'titolo',
+    name: 'titolo',
+    field: 'titolo',
+    align: 'left',
+    sortable: true,
+  },
+  {
+    label: 'collocazione',
+    name: 'collocazione_nome',
+    field: 'collocazione_nome',
+    align: 'left',
+    sortable: true,
+  },
+]
+const pagination = {
+  sortBy: 'id',
+  descending: false,
+  // page: number,
+  rowsPerPage: 30,
+  // page: 2
+  // totalItems: number"
+}
+const hideHeader = computed(() => {
+  if (grid.value) {
+    return true
+  }
+  return false
+})
 const disegni = computed(() => {
-  if (!!search.value) {
-    let searchFilter: string = search.value.toLocaleLowerCase()
+  if (!!filter.value) {
+    let searchFilter: string = filter.value.toLocaleLowerCase()
     return disegnoStore.disegni.filter(
       (item) =>
         item.titolo.toLocaleLowerCase().includes(searchFilter) ||
