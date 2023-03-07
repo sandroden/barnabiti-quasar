@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHr lpR fFf">
+  <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar class="bg-secondary text-primary" dark>
         <q-btn
@@ -23,9 +23,10 @@
           <q-icon name="menu" />
         </q-btn>
         <q-toolbar-title class="text-weight-medium text-h5">
-          Milano 1450-1499
+          Chierici Regolari di San Paolo
         </q-toolbar-title>
         <q-list class="row" id="toolbar-buttons">
+          <div id="searchInput"></div>
           <q-item to="/">Home </q-item>
           <q-item to="/guida">Guida </q-item>
           <q-item to="/contatti">Contatti </q-item>

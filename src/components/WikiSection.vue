@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { usePageStore } from '../stores/pages'
+import mapStores from '../stores/all'
 import { Content } from 'stores/models'
 import { onMounted, computed } from 'vue'
 // import { defaultDecoder } from 'qs'
@@ -8,6 +9,12 @@ import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
 const pageStore = usePageStore()
+// const pageStore = mapStores['pages']
+console.log('pageStore', pageStore)
+console.log('mapStore', mapStores)
+
+// console.log('pageStore2', pageStore2)
+
 // // const elLinks = null
 // // const linkList = null
 // const $u = utils

@@ -16,7 +16,15 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'disegni',
         name: 'disegni',
-        component: () => import('pages/WikiPage.vue'),
+        component: () => import('src/pages/DisegnoList.vue'),
+        children: [
+          {
+            path: ':id',
+            name: 'disegno-detail',
+            component: () => import('pages/DisegnoDetail.vue'),
+            props: true,
+          },
+        ],
       },
       {
         path: 'autori',

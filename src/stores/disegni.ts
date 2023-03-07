@@ -1,30 +1,47 @@
 import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
-import { Content } from 'src/stores/models'
+// import { Content } from 'src/stores/models'
 
-export const usePageStore = defineStore('pages', {
+interface Disegno {
+  id: string
+  pk: string
+  autore: string
+  autore_nome: string
+  titolo: string
+  datazione: string
+  collegio: string
+  collocazione: string
+  collocazione_nome: string
+  fronte: string
+  retro: string
+  descrizione: string
+  fronte_thumb: string
+  retro_thumb: string
+}
+
+export const useDisegnoStore = defineStore('disegni', {
   state: () => ({
-    counter: 3,
     pk: <string>'',
-    pages: [] as Content[],
-    detail: {} as Content,
+    disegni: [] as Disegno[],
+    detail: {} as Disegno,
     filters: '',
     errors: [],
     page: {},
     perPage: 10,
-    pageOptions: {},
+    pageOptions: <object>{},
     orderBy: null,
     allPks: <string[]>[],
-    byPk: {},
+    byPk: <object>{},
   }),
   getters: {
-    doubleCount: (state) => state.counter * 2,
     find: (state) => (pk: string) => {
       // Swap ID references with the resolved author objects.
       console.log(`content find , pk=${pk}`)
 
       if (pk in state.byPk) {
-        return state.byPk[pk] as Content
+        console.log('item:', state.byPk[pk])
+
+        return state.byPk[pk] as Disegno
       } else {
         return {}
       }
@@ -59,8 +76,8 @@ export const usePageStore = defineStore('pages', {
     async getList() {
       console.log('baseURL ', api)
       try {
-        const result = await api.get('/pages')
-        this.pages = result.data
+        const result = await api.get('/disegni')
+        this.disegni = result.data
         this.setAllByPk()
       } catch (error) {
         alert(error)
@@ -70,11 +87,11 @@ export const usePageStore = defineStore('pages', {
     setAllByPk() {
       const byPk: object = {}
       const allPks: string[] = []
-      this.pages.forEach((item: Content) => {
-        console.log('setAllByPk item=', item.slug)
+      this.disegni.forEach((item: Disegno) => {
+        console.log('setAllByPk item=', item.id)
 
-        byPk[item.slug] = item
-        allPks.push(item.slug)
+        byPk[item.id] = item
+        allPks.push(item.id)
       })
       // for (const x of this.pages) {
 
