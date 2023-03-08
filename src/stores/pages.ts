@@ -57,7 +57,6 @@ export const usePageStore = defineStore('pages', {
   },
   actions: {
     async getList() {
-      console.log('baseURL ', api)
       try {
         const result = await api.get('/pages')
         this.pages = result.data
@@ -71,17 +70,12 @@ export const usePageStore = defineStore('pages', {
       const byPk: object = {}
       const allPks: string[] = []
       this.pages.forEach((item: Content) => {
-        console.log('setAllByPk item=', item.slug)
-
         byPk[item.slug] = item
         allPks.push(item.slug)
       })
       // for (const x of this.pages) {
 
       // }
-      console.log('byPk', byPk)
-      console.log('allPks', allPks)
-
       this.byPk = byPk
       this.allPks = allPks
     },

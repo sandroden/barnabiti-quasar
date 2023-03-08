@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
 // import { Content } from 'src/stores/models'
 
-interface Disegno {
+export interface Disegno {
   id: string
   pk: string
   autore: string
@@ -36,12 +36,9 @@ export const useDisegnoStore = defineStore('disegni', {
   getters: {
     find: (state) => (pk: string) => {
       // Swap ID references with the resolved author objects.
-      console.log(`content find , pk=${pk}`)
 
       if (pk in state.byPk) {
-        console.log('item:', state.byPk[pk])
-
-        return state.byPk[pk] as Disegno
+        return state.byPk[pk as keyof Disegno] as Disegno
       } else {
         return {}
       }
@@ -74,7 +71,6 @@ export const useDisegnoStore = defineStore('disegni', {
   },
   actions: {
     async getList() {
-      console.log('baseURL ', api)
       try {
         const result = await api.get('/disegni')
         this.disegni = result.data
@@ -88,17 +84,12 @@ export const useDisegnoStore = defineStore('disegni', {
       const byPk: object = {}
       const allPks: string[] = []
       this.disegni.forEach((item: Disegno) => {
-        console.log('setAllByPk item=', item.id)
-
         byPk[item.id] = item
         allPks.push(item.id)
       })
       // for (const x of this.pages) {
 
       // }
-      console.log('byPk', byPk)
-      console.log('allPks', allPks)
-
       this.byPk = byPk
       this.allPks = allPks
     },

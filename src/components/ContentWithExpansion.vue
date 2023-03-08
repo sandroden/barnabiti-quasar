@@ -47,7 +47,7 @@ const store = mapStores[props.model]
 
 const xslug = computed(() => {
   // filter is a prop betweeb image_choices or statuso_choices
-  return props.filter ? `${props.slug}-${props.filter}` : props.slug}
+  return props.filter ? `${props.slug}-${props.filter}` : props.slug
 })
 
 const items = computed(() => {

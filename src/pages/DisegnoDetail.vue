@@ -39,8 +39,6 @@ const item = computed(() => {
   return disegnoStore.find(props.id) as Disegno
 })
 function onMaximizeDialog() {
-  console.log('receiving maximize-dialog')
-
   force_max.value = !force_max.value
 }
 function onHide() {

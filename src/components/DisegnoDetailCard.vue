@@ -18,7 +18,6 @@
           <em>{{ item.collocazione_nome }}</em>
         </div>
         <div v-if="full" v-html="item.descrizione"></div>
-
       </q-card-section>
       <!-- <q-slide-transition>
         <div v-show="expanded">
@@ -60,13 +59,9 @@ const dim = computed(() => {
   return props.mini ? 200 : 600
 })
 function showDetail(id: string) {
-  console.log(`showDetail disegno ${id}`)
-
   router.push(`/disegni/${id}`)
 }
 function toggleMax() {
-  console.log('emitting maximize-dialog');
-
   emit('maximize-dialog')
 }
 </script>

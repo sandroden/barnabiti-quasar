@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="row items-center content-start justify-evenly">
     <wiki-section :slug="props.slug" single />
   </q-page>
 </template>

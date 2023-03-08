@@ -1,11 +1,9 @@
 <template>
   <div>
-    <h1>Disegni</h1>
+    <h2>Catalogo Disegni</h2>
 
     <q-table
       flat
-      :grid="grid"
-      title="Disegni"
       :rows="disegnoStore.disegni"
       row-key="fronte"
       :columns="columns"
@@ -13,6 +11,7 @@
       :filter="filter"
       :hide-header="hideHeader"
       dense
+      :grid="grid"
       class="q-ma-none"
     >
       <template v-slot:top-right>
@@ -127,8 +126,6 @@ const disegni = computed(() => {
   return disegnoStore.disegni
 })
 function showDetail(id: string) {
-  console.log(`showDetail disegno ${id}`)
-
   router.push(`/disegni/${id}`)
 }
 onMounted(() => {

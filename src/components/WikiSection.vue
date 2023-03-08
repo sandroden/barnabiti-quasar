@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePageStore } from '../stores/pages'
-import mapStores from '../stores/all'
+// import mapStores from '../stores/all'
 import { Content } from 'stores/models'
 import { onMounted, computed } from 'vue'
 // import { defaultDecoder } from 'qs'
@@ -10,10 +10,6 @@ import { useQuasar } from 'quasar'
 const $q = useQuasar()
 const pageStore = usePageStore()
 // const pageStore = mapStores['pages']
-console.log('pageStore', pageStore)
-console.log('mapStore', mapStores)
-
-// console.log('pageStore2', pageStore2)
 
 // // const elLinks = null
 // // const linkList = null
@@ -102,11 +98,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <q-card v-bind="$attrs" :class="qcardClasses">
+  <q-card v-bind="$attrs" class="no-shadow" :class="qcardClasses">
     <slot name="header"></slot>
     <slot name="body" :content="content">
       <q-card-section v-if="content.titolo">
-        <h1 class="text-center" v-html="content.titolo"></h1>
+        <h2 class="text-center" v-html="content.titolo"></h2>
       </q-card-section>
 
       <!-- float img + wrapping text  -->
