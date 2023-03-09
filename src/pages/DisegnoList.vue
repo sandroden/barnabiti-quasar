@@ -4,7 +4,7 @@
 
     <q-table
       flat
-      :rows="disegnoStore.disegni"
+      :rows="disegni"
       row-key="fronte"
       :columns="columns"
       :pagination="pagination"
@@ -54,14 +54,17 @@
 <script setup lang="ts">
 import { useDisegnoStore } from '../stores/disegni'
 import { onMounted, ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 import DisegnoDetailCard from '../components/DisegnoDetailCard.vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const disegnoStore = useDisegnoStore()
 const filter = ref<string>('')
-const activateTeleport = ref(0)
-const router = useRouter()
+// const activateTeleport = ref(0)
+// const router = useRouter()
 const grid = ref<boolean>(true)
+
 const columns = [
   {
     label: '',
@@ -113,24 +116,37 @@ const hideHeader = computed(() => {
   }
   return false
 })
+// const disegni = computed(() => {
+//   if (!!filter.value) {
+//     let searchFilter: string = filter.value.toLocaleLowerCase()
+//     return disegnoStore.disegni.filter(
+//       (item) =>
+//         item.titolo.toLocaleLowerCase().includes(searchFilter) ||
+//         item.autore_nome.toLocaleLowerCase().includes(searchFilter) ||
+//         item.collocazione_nome.toLocaleLowerCase().includes(searchFilter)
+//     )
+//   }
+//   return disegnoStore.disegni
+// })
 const disegni = computed(() => {
-  if (!!filter.value) {
-    let searchFilter: string = filter.value.toLocaleLowerCase()
-    return disegnoStore.disegni.filter(
-      (item) =>
-        item.titolo.toLocaleLowerCase().includes(searchFilter) ||
-        item.autore_nome.toLocaleLowerCase().includes(searchFilter) ||
-        item.collocazione_nome.toLocaleLowerCase().includes(searchFilter)
-    )
-  }
+  // for (let key in route.query) {
+  //   if (key.match(/^filter_collocazioni$/)) {
+  //     console.log('collocazioni'); // Output: "pdf", "csv"
+  //     let value = route.query[key]
+  //     return disegnoStore.disegni.filter(item => {
+  //       item.collocazione === value
+  //     }
+  //   }
   return disegnoStore.disegni
 })
-function showDetail(id: string) {
-  router.push(`/disegni/${id}`)
-}
+
+// function showDetail(id: string) {
+//   router.push(`/disegni/${id}`)
+// }
 onMounted(() => {
-  activateTeleport.value = 1
+  // activateTeleport.value = 1
   disegnoStore.getList()
+  console.log('filter:', route.query)
 })
 </script>
 

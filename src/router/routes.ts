@@ -20,7 +20,8 @@ const routes: RouteRecordRaw[] = [
         children: [
           {
             path: ':id',
-            name: 'disegno-detail',
+            name: 'disegni',
+            // props: route => ({ filter: route.params.id }),
             component: () => import('pages/DisegnoDetail.vue'),
             props: true,
           },
@@ -29,19 +30,19 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'autori',
         name: 'autori',
-        component: () => import('pages/WikiPage.vue'),
+        component: () => import('src/pages/AutoreList.vue'),
       },
       {
         path: 'archivi',
         name: 'archivi',
-        props: { slug: 'archivi' },
-        component: () => import('pages/WikiPage.vue'),
+        // props: { slug: 'archivi' },
+        component: () => import('pages/CollocazioniPage.vue'),
       },
       {
         path: 'collegi',
         name: 'collegi',
-        props: { slug: 'collegi' },
-        component: () => import('pages/WikiPage.vue'),
+        // props: { slug: 'collegi' },
+        component: () => import('pages/CollegiPage.vue'),
       },
       {
         path: 'cerca',

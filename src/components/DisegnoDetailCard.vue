@@ -5,8 +5,16 @@
         <div class="text-h6">{{ item.titolo }}</div>
         <div class="row no-wrap q-gutter-sm" @click="showDetail(item.id)">
           <template v-if="props.mini">
-            <q-img :src="item.fronte_thumb" :style="`max-width: ${dim}px`" />
-            <q-img :src="item.retro_thumb" :style="`max-width: ${dim}px`" />
+            <q-img
+              :src="item.fronte_thumb"
+              :style="`max-width: ${dim}px`"
+              class="lettera cursor-pointer"
+            />
+            <q-img
+              :src="item.retro_thumb"
+              :style="`max-width: ${dim}px`"
+              class="lettera cursor-pointer"
+            />
           </template>
           <template v-else>
             <q-img :src="item.fronte" :style="`max-width: ${dim}px`" />
@@ -38,7 +46,7 @@
 import { computed } from 'vue'
 import { Disegno } from '../stores/disegni'
 import { useRouter } from 'vue-router'
-import { defineEmits } from 'vue'
+// import { defineEmits } from 'vue'
 
 const emit = defineEmits(['maximize-dialog'])
 
@@ -59,6 +67,8 @@ const dim = computed(() => {
   return props.mini ? 200 : 600
 })
 function showDetail(id: string) {
+  console.log('showDetail + route')
+
   router.push(`/disegni/${id}`)
 }
 function toggleMax() {

@@ -2,29 +2,18 @@ import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
 // import { Content } from 'src/stores/models'
 
-export interface Disegno {
+export interface Collegio {
   id: string
-  pk: string
-  autore: string
-  autore_nome: string
-  titolo: string
-  datazione: string
-  collegio: string
-  collocazione: string
-  collocazione_nome: string
-  fronte: string
-  retro: string
+  nome: string
   descrizione: string
-  fronte_thumb: string
-  retro_thumb: string
 }
 
-export const useDisegnoStore = defineStore('disegni', {
+export const useCollegioStore = defineStore('collegi', {
   state: () => ({
-    apiUrl: '/disegni',
+    apiUrl: '/collegi/',
     pk: <string>'',
-    disegni: [] as Disegno[],
-    detail: {} as Disegno,
+    list: [] as Collegio[],
+    detail: {} as Collegio,
     filters: '',
     errors: [],
     page: {},
@@ -39,16 +28,16 @@ export const useDisegnoStore = defineStore('disegni', {
       // Swap ID references with the resolved author objects.
 
       if (pk in state.byPk) {
-        return state.byPk[pk as keyof typeof state.byPk] as Disegno
+        return state.byPk[pk as keyof typeof state.byPk] as Collegio
       } else {
         return {}
       }
     },
     // Return a list of articles in the order of `allIds`.
-    list(): string[] {
+    /*   list(): string[] {
       return this.allPks.map((pk: string) => this.find(pk))
     },
-    getDetail(state) {
+   */ getDetail(state) {
       return state.detail
     },
     // filters(state) {
@@ -73,8 +62,9 @@ export const useDisegnoStore = defineStore('disegni', {
   actions: {
     async getList() {
       try {
-        const result = await api.get(`${this.apiUrl}/`)
-        this.disegni = result.data
+        const url = `${this.apiUrl}`
+        const result = await api.get(url)
+        this.list = result.data
         this.setAllByPk()
       } catch (error) {
         alert(error)
@@ -84,7 +74,7 @@ export const useDisegnoStore = defineStore('disegni', {
     setAllByPk() {
       const byPk: object = {}
       const allPks: string[] = []
-      this.disegni.forEach((item: Disegno) => {
+      this.list.forEach((item: Collegio) => {
         byPk[item.id as keyof typeof byPk] = item
         allPks.push(item.id)
       })
