@@ -2,28 +2,32 @@
   <div>
     <q-card class="q-pa-sm">
       <q-card-section>
-        <div class="text-h6">{{ item.titolo }}</div>
         <div class="row no-wrap q-gutter-sm" @click="showDetail(item.id)">
           <template v-if="props.mini">
             <q-img
               :src="item.fronte_thumb"
               :style="`max-width: ${dim}px`"
-              class="lettera cursor-pointer"
+              class="lettera cursor-pointer self-stretch"
             />
             <q-img
               :src="item.retro_thumb"
               :style="`max-width: ${dim}px`"
-              class="lettera cursor-pointer"
+              class="lettera cursor-pointer self-stretch"
             />
           </template>
           <template v-else>
-            <q-img :src="item.fronte" :style="`max-width: ${dim}px`" />
-            <q-img :src="item.retro" :style="`max-width: ${dim}px`" />
+            <a :href="item.fronte" target="_blank" :style="`width: ${dim}px`">
+              <q-img :src="item.fronte" :style="`max-width: ${dim}px`" />
+            </a>
+            <a :href="item.retro" target="_blank" :style="`width: ${dim}px`">
+              <q-img :src="item.retro" :style="`max-width: ${dim}px`" />
+            </a>
           </template>
         </div>
-        <div class="text-subtitle2">{{ item.autore_nome }}</div>
+        <div class="text-subtitle1 text-weight-medium">{{ item.titolo }}</div>
+        <div class="text-subtitle1 text-accent">{{ item.autore_nome }}</div>
         <div class="text-subtitle2">
-          <em>{{ item.collocazione_nome }}</em>
+          {{ item.collocazione_nome }}
         </div>
         <div v-if="full" v-html="item.descrizione"></div>
       </q-card-section>
