@@ -1,11 +1,15 @@
 <template>
-  <h1>Collocazioni</h1>
-  <hr />
-  <div class="column items-left">
-    <div class="collocazioni" v-for="(item, idx) in store.list" :key="idx">
-      <a :href="`/disegni/${item.id}/`">{{ item.nome }}</a>
+  <q-page class="column constrained-page">
+    <h1>Collocazioni</h1>
+    <hr />
+    <div class="column items-left">
+      <div class="collocazioni" v-for="(item, idx) in store.list" :key="idx">
+        <a :href="`/disegni/?filter_collocazioni=${item.id}`">{{
+          item.nome
+        }}</a>
+      </div>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <script setup lang="ts">
