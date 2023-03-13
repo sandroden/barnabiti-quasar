@@ -33,7 +33,10 @@ img
     color: red
 
 .constrained-page
-  justify-content: center
+  // the page is filled as column
+  // q-page class="column constrained-page"
+  justify-content: start
+  align-items: center
   & > div
     width: 85%
     max-width: 1000px

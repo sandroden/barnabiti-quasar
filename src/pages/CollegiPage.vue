@@ -1,7 +1,7 @@
 <template>
-  <h1>Collegi</h1>
-  <hr />
-  <div class="column items-left">
+  <q-page class="column constrained-page">
+    <h1>Collegi</h1>
+    <hr />
     <q-list>
       <q-expansion-item v-for="(item, idx) in store.list" :key="idx">
         <template v-slot:header>
@@ -13,7 +13,7 @@
         </q-card>
       </q-expansion-item>
     </q-list>
-  </div>
+  </q-page>
 </template>
 
 <script setup lang="ts">

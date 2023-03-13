@@ -102,7 +102,7 @@ onMounted(() => {
     <slot name="header"></slot>
     <slot name="body" :content="content">
       <q-card-section v-if="content.titolo">
-        <h2 class="text-center" v-html="content.titolo"></h2>
+        <h1 class="text-center" v-html="content.titolo"></h1>
       </q-card-section>
 
       <!-- float img + wrapping text  -->

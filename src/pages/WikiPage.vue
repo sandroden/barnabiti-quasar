@@ -1,6 +1,13 @@
 <template>
-  <q-page class="items-center content-start constrained-page justify-center">
-    <wiki-section :slug="props.slug" single />
+  <q-page class="column constrained-page q-pt-xl">
+    <div>
+      <template v-if="props.slug">
+        <wiki-section :slug="props.slug" single />
+      </template>
+      <template v-else>
+        <slot name="default"> </slot>
+      </template>
+    </div>
   </q-page>
 </template>
 
@@ -14,6 +21,7 @@ import WikiSection from '../components/WikiSection.vue'
 
 interface Props {
   slug: string
+  title?: string
 }
 const props = defineProps<Props>()
 

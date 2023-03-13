@@ -4,7 +4,7 @@ import { Content } from 'src/stores/models'
 
 export const usePageStore = defineStore('pages', {
   state: () => ({
-    counter: 3,
+    apiUrl: '/pages',
     pk: <string>'',
     pages: [] as Content[],
     detail: {} as Content,
@@ -18,7 +18,6 @@ export const usePageStore = defineStore('pages', {
     byPk: {},
   }),
   getters: {
-    doubleCount: (state) => state.counter * 2,
     find: (state) => (pk: string) => {
       // Swap ID references with the resolved author objects.
       console.log(`content find , pk=${pk}`)
@@ -56,14 +55,17 @@ export const usePageStore = defineStore('pages', {
     // },
   },
   actions: {
-    async getList() {
-      try {
-        const result = await api.get('/pages')
-        this.pages = result.data
-        this.setAllByPk()
-      } catch (error) {
-        alert(error)
-        console.log(error)
+    async getList(forceReload?: boolean) {
+      // by default don't getdata if you already have some
+      if (forceReload || !this.pages.length) {
+        try {
+          const result = await api.get(this.apiUrl)
+          this.pages = result.data
+          this.setAllByPk()
+        } catch (error) {
+          alert(error)
+          console.log(error)
+        }
       }
     },
     setAllByPk() {
