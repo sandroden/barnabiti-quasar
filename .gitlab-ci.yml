@@ -1,0 +1,19 @@
+#
+build_image:
+  image: docker
+
+  tags:
+    - node
+
+  variables:
+    ENV: dev
+    DOCKER_BUILDKIT: 1
+    IMAGE_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+
+  script:
+    - mkdir $HOME/.docker
+    - "echo -e '{\n  \"experimental\": \"enabled\"\n}' | tee $HOME/.docker/config.json"
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker build -t  $IMAGE_NAME .
+    - docker push $IMAGE_NAME
