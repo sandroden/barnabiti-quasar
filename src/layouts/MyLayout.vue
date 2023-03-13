@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="lHh lpR fFf">
     <q-header elevated>
       <q-toolbar class="bg-secondary text-primary" dark>
         <q-btn
@@ -23,7 +23,7 @@
           <q-icon name="menu" />
         </q-btn>
         <q-toolbar-title class="text-weight-medium text-h5">
-          Chierici Regolari di San Paolo
+          1533-1810
         </q-toolbar-title>
         <q-list class="row" id="toolbar-buttons">
           <div id="searchInput"></div>
@@ -44,41 +44,41 @@
         <q-img src="/logo-sforza.jpg" q-ma-none q-pa-none> </q-img>
       </router-link> -->
       <q-list text-white class="column">
+        <q-img
+          src="logo_polimi_outline.png"
+          class="sponsor q-ma-none q-pa-none"
+          width="300px"
+          native-context-menu
+        >
+        </q-img>
         <q-item to="/disegni">
           <q-item-section>
-            <q-item-label>Catalogo dei disegni</q-item-label>
+            <q-item-label>CATALOGO DEI DISEGNI</q-item-label>
           </q-item-section>
         </q-item>
         <q-item to="/autori">
           <q-item-section>
-            <q-item-label>Autori</q-item-label>
+            <q-item-label>AUTORI</q-item-label>
           </q-item-section>
         </q-item>
         <q-item to="/archivi">
           <q-item-section>
-            <q-item-label>Archivi e Collezioni</q-item-label>
+            <q-item-label>ARCHIVI E COLLEZIONI</q-item-label>
           </q-item-section>
         </q-item>
         <q-item to="/collegi">
           <q-item-section>
-            <q-item-label>Collegi</q-item-label>
+            <q-item-label>COLLEGI</q-item-label>
           </q-item-section>
         </q-item>
 
         <q-item to="/cerca">
           <q-item-section>
-            <q-item-label>Cerca</q-item-label>
+            <q-item-label>CERCA</q-item-label>
           </q-item-section>
         </q-item>
         <q-space></q-space>
       </q-list>
-      <q-img
-        src="logo_polimi_outline.png"
-        class="sponsor q-ma-none q-pa-none"
-        width="320px"
-        native-context-menu
-      >
-      </q-img>
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -86,7 +86,7 @@
     <q-footer class="bg-secondary">
       <q-toolbar class="q-py-none toolbar__footer">
         <q-toolbar-title class="text-primary text-subtitle2 text-weight-light">
-          Corpus dei disegni Chierici Regolari di san Paolo
+          Corpus dei disegni Chierici Regolari di san Paolo 1533-1810
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
