@@ -5,6 +5,8 @@
 <script setup lang="ts"></script>
 
 <style lang="sass">
+
+$typography-font-family: 'Raleway', sans-serif
 p, h1, h2, h3, h4, h5
   color: $grey-9
   font-size: 1rem
