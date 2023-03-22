@@ -12,7 +12,7 @@
           <q-icon name="menu" />
         </q-btn>
         <q-toolbar-title class="text-weight-medium text-h4">
-          Corpus dei disegni Chierici Regolari di san Paolo
+          Corpus dei disegni dei Chierici Regolari di san Paolo
           <br />
         </q-toolbar-title>
       </q-toolbar>
@@ -86,7 +86,7 @@
     <q-footer class="bg-secondary">
       <q-toolbar class="q-py-none toolbar__footer">
         <q-toolbar-title class="text-primary text-subtitle2 text-weight-light">
-          Corpus dei disegni Chierici Regolari di san Paolo 1533-1810
+          Corpus dei disegni dei Chierici Regolari di san Paolo 1533-1810
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
