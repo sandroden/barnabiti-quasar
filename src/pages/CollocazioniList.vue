@@ -14,10 +14,8 @@
 
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
-import { useCollocazioneStore, Collocazione } from '../stores/collocazioni'
+import { useCollocazioneStore } from '../stores/collocazioni'
 // takes an element object
-
-let colls = reactive([])
 
 const store = useCollocazioneStore()
 onMounted(() => {

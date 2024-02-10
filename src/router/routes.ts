@@ -36,13 +36,13 @@ const routes: RouteRecordRaw[] = [
         path: 'archivi',
         name: 'archivi',
         // props: { slug: 'archivi' },
-        component: () => import('pages/CollocazioniPage.vue'),
+        component: () => import('pages/CollocazioniList.vue'),
       },
       {
         path: 'collegi',
         name: 'collegi',
         // props: { slug: 'collegi' },
-        component: () => import('pages/CollegiPage.vue'),
+        component: () => import('pages/CollegiList.vue'),
       },
       {
         path: 'cerca',
