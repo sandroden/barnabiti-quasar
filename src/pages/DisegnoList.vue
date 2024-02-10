@@ -1,8 +1,7 @@
 <template>
-  <q-page class="column contstrained-page">
+  <q-page class="column constrained-page">
+    <h1>Catalogo Disegni</h1>
     <div>
-      <h2>Catalogo Disegni</h2>
-
       <q-table
         flat
         :rows="disegni"
