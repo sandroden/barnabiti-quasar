@@ -43,7 +43,7 @@
       </router-link> -->
       <q-list text-white class="column">
         <q-img
-          src="logo_polimi_outline.png"
+          src="/logo_polimi_outline.png"
           class="sponsor q-ma-none q-pa-none"
           width="300px"
         >
