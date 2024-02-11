@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh lpR fFf">
+  <q-layout view="LHh lpR fFf">
     <q-header elevated>
       <q-toolbar class="bg-secondary text-primary" dark>
         <q-btn
@@ -48,7 +48,6 @@
           src="logo_polimi_outline.png"
           class="sponsor q-ma-none q-pa-none"
           width="300px"
-          native-context-menu
         >
         </q-img>
         <q-item to="/disegni">
@@ -111,7 +110,9 @@ const leftDrawerOpen = ref($q.platform.is.desktop)
    color: #7C3D0F
 .q-item__section
     color: #7C3D0F
-
+.q-item__label
+    font-weight: bold
+    font-size: 120%
 img
   width: 50%
 
