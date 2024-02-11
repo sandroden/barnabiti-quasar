@@ -105,9 +105,7 @@ const leftDrawerOpen = ref($q.platform.is.desktop)
 .toolbar__footer
    min-height: 40px
 
->>> .q-drawer-container .q-item__section > .q-item__label
-   text-transform: uppercase
-   color: #7C3D0F
+
 .q-item__section
     color: #7C3D0F
 .q-item__label
