@@ -1,6 +1,6 @@
 <template>
-  <q-page class="column constrained-page">
-    <h1>Catalogo Disegni</h1>
+  <q-page class="column">
+    <h1 class="text-center">Catalogo Disegni</h1>
     <div>
       <q-table
         flat
@@ -103,6 +103,7 @@ const columns = [
     field: 'autore_nome',
     align: 'left',
     sortable: true,
+    style: 'white-space: normal; word-wrap: break-word;',
   },
   {
     label: 'titolo',
@@ -110,6 +111,7 @@ const columns = [
     field: 'titolo',
     align: 'left',
     sortable: true,
+    style: 'white-space: normal; word-wrap: break-word;',
   },
   {
     label: 'collocazione',
@@ -117,6 +119,7 @@ const columns = [
     field: 'collocazione_nome',
     align: 'left',
     sortable: true,
+    style: 'white-space: normal; word-wrap: break-word;',
   },
 ]
 const pagination = {
