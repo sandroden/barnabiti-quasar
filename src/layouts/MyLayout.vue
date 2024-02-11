@@ -1,7 +1,7 @@
 <template>
   <q-layout view="LHh lpR fFf">
     <q-header elevated>
-      <q-toolbar class="bg-secondary text-primary" dark>
+      <q-toolbar class="bg-secondary text-primary reduce-margin-bottom" dark>
         <q-btn
           flat
           dense
@@ -16,9 +16,7 @@
           <br />
         </q-toolbar-title>
       </q-toolbar>
-      <q-toolbar
-        class="q-mt-none q-pt-none bg-secondary text-primary justify-end"
-      >
+      <q-toolbar class="q-mt-none bg-secondary text-primary justify-end">
         <q-btn flat dense class="invisible">
           <q-icon name="menu" />
         </q-btn>
@@ -126,5 +124,6 @@ img
 
 .q-toolbar
    height: 70px
+.reduce-margin-bottom
+  margin-bottom: -15px
 </style>
->
