@@ -176,5 +176,3 @@ onMounted(() => {
   console.log('filter:', route.query)
 })
 </script>
-
-<style scoped></style>

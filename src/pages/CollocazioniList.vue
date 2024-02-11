@@ -1,6 +1,6 @@
 <template>
   <q-page class="column constrained-page">
-    <h1>Collocazioni</h1>
+    <h1>Archivi e Collezioni</h1>
     <hr />
     <div class="column items-left">
       <div class="collocazioni" v-for="(item, idx) in store.list" :key="idx">
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import { onMounted } from 'vue'
 import { useCollocazioneStore } from '../stores/collocazioni'
 // takes an element object
 

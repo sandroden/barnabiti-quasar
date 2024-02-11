@@ -51,7 +51,7 @@ img
     text-decoration: none
     font-weight: 600
     &:hover
-      color: $primary
+      color: $secondary
     &:visited
-      color: $primary
+      color: $secondary
 </style>
