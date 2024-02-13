@@ -88,6 +88,6 @@ function scrollToElement(letter: string) {
 .q-card__section--vert
   padding-left: 0px
 
->>> #architetti-items .q-list p
+#architetti-items .q-list p
   margin-top: .6rem
 </style>

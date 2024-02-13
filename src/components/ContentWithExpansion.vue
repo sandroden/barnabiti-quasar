@@ -100,7 +100,7 @@ onMounted(() => {
 </script>
 
 <style lang="sass" scoped>
->>> .q-item
+.q-item
   padding: 8px 16px 8px 0px
 
 .q-item__label
@@ -118,6 +118,6 @@ onMounted(() => {
   font-style: italic
   margin-right: 2em
 
->>> .q-expansion-item--expanded .q-expansion-item__content table
+.q-expansion-item--expanded .q-expansion-item__content table
    color: #444
 </style>
