@@ -4,9 +4,11 @@
     <hr />
     <div class="column items-left">
       <div class="collocazioni" v-for="(item, idx) in store.list" :key="idx">
-        <a :href="`/disegni/?filter_collocazioni=${item.id}`">{{
-          item.nome
-        }}</a>
+        <router-link
+          :to="{ path: '/disegni', query: { filter_collocazioni: item.id } }"
+        >
+          {{ item.nome }}
+        </router-link>
       </div>
     </div>
   </q-page>
