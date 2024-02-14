@@ -24,11 +24,14 @@
             </a>
           </template>
         </div>
-        <!--         <div class="text-subtitle1 text-weight-medium">{{ item.titolo }}</div>
-        <div class="text-subtitle1 text-accent">{{ item.autore_nome }}</div>
-        <div class="text-subtitle2">
-          {{ item.collocazione_nome }}
-        </div> -->
+        <template v-if="props.mini">
+          <div class="text-subtitle1 text-weight-medium">{{ item.titolo }}</div>
+          <div class="text-subtitle1 text-accent">{{ item.autore_nome }}</div>
+          <div class="text-subtitle2">
+            {{ item.collocazione_nome }}
+          </div>
+        </template>
+
         <div v-if="full" v-html="item.descrizione"></div>
       </q-card-section>
       <!-- <q-slide-transition>
