@@ -28,6 +28,12 @@ const routes: RouteRecordRaw[] = [
         ],
       },
       {
+        path: 'disegno/:id',
+        name: 'disegno',
+        component: () => import('src/pages/DisegnoDetailPage.vue'),
+        props: true,
+      },
+      {
         path: 'autori',
         name: 'autori',
         component: () => import('src/pages/AutoreList.vue'),

@@ -68,6 +68,11 @@
             <q-item-label>COLLEGI</q-item-label>
           </q-item-section>
         </q-item>
+        <!--         <q-item to="/disegno/404">
+          <q-item-section>
+            <q-item-label>Disegno 404</q-item-label>
+          </q-item-section>
+        </q-item> -->
 
         <q-item to="/cerca">
           <q-item-section>

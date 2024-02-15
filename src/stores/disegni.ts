@@ -37,10 +37,12 @@ export const useDisegnoStore = defineStore('disegni', {
   getters: {
     find: (state) => (pk: string) => {
       // Swap ID references with the resolved author objects.
-
+      console.log(`disegni.find(${pk})`)
       if (pk in state.byPk) {
+        console.log(state.byPk[pk as keyof typeof state.byPk])
         return state.byPk[pk as keyof typeof state.byPk] as Disegno
       } else {
+        console.log(`id ${pk} non trovata in`, state.byPk)
         return {}
       }
     },

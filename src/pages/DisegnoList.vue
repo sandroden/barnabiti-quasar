@@ -159,7 +159,8 @@ const disegni = computed(() => {
 })
 function showDetail(id: string) {
   console.log('showDetail + route')
-  router.push(`/disegni/${id}`)
+  // router.push(`/disegni/${id}`)
+  window.open(`/disegno/${id}`)
 }
 // for (let key in route.query) {
 //   if (key.match(/^filter_collocazioni$/)) {

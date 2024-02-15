@@ -74,9 +74,9 @@ const dim = computed(() => {
   return props.mini ? 200 : 600
 })
 function showDetail(id: string) {
-  console.log('showDetail + route')
-
-  router.push(`/disegni/${id}`)
+  console.log('showDetail + route => window')
+  window.open(`/disegni/${id}`)
+  // router.push(`/disegni/${id}`)
 }
 function toggleMax() {
   emit('maximize-dialog')
