@@ -42,26 +42,32 @@
         </section>
       </div>
     </div>
-    <search-detail ref="detailDialog" :item="item" />
+    <SearchDetail ref="detailDialog" :item="item" />
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import SearchDetail from './SearchDetail.vue'
 import { useSearchResultStore, SearchResult } from '../stores/search-result'
 import { api } from 'boot/axios'
+// import console from 'console'
 
 const search = ref('')
 const search_results = ref<SearchResult[]>([])
 const item = ref<SearchResult | null>(null)
 const keywords = ref<string[]>([])
-const detailDialog = ref(<null | HTMLBaseElement>null)
-const searchResultStore = useSearchResultStore()
+const detailDialog = ref<typeof SearchDetail | null>(null)
+// const searchResultStore = useSearchResultStore()
 
-const show = (result: string) => {
+const show = (result: SearchResult) => {
   item.value = result
-  detailDialog.value.show(result)
+
+  console.log('show fromSearchPage: detailDialog:', detailDialog.value?.value)
+  detailDialog.value.show()
+}
+const isSearchDetail = () => {
+  return detailDialog.value && detailDialog.value.constructor === SearchDetail
 }
 
 /* const searchItems = () => {
@@ -77,6 +83,15 @@ watch(search, (value) => {
       search_results.value = response.data.results
       keywords.value = response.data.keywords
     })
+  }
+})
+onMounted(() => {
+  // Verifica se il ref contiene effettivamente il componente SearchDetail
+  if (detailDialog.value) {
+    console.log(
+      'onMounted: ',
+      detailDialog.value.$options.name === 'SearchDetail'
+    ) // true o false
   }
 })
 /* watch(search, () => {

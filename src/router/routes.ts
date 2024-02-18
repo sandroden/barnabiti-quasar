@@ -54,7 +54,8 @@ const routes: RouteRecordRaw[] = [
         path: 'cerca',
         name: 'cerca',
         props: { slug: 'cerca' },
-        component: () => import('pages/SearchPage.vue'),
+        // component: () => import('pages/SearchPage.vue'),
+        component: () => import('pages/WikiPage.vue'),
       },
       {
         path: 'guida',

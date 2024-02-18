@@ -4,7 +4,7 @@
     v-model="dialog"
     @show="onShow"
     @hide="dialog = false"
-    :maximized="this.$q.screen.lt.md"
+    :maximized="$q.screen.lt.md"
   >
     <q-card ref="card" id="content" class="q-pa-lg">
       <q-card-actions align="right">
@@ -14,7 +14,7 @@
         <h1>{{ item.title }}</h1>
       </q-card-section>
       <q-card-section class="row q-col-gutter-lg">
-        <div class="col-xs-12" v-html="item.description" />
+        <div class="col-xs-12" v-html="item.descrizione" />
       </q-card-section>
       <q-card-actions align="right">
         <q-btn flat icon="close" v-close-popup clickable></q-btn>
@@ -22,47 +22,59 @@
     </q-card>
   </q-dialog>
 </template>
-
-<script>
+<script setup lang="ts">
+import { onMounted, ref, defineExpose } from 'vue'
 import Mark from 'mark.js'
+import { SearchResult } from '../stores/search-result'
+import { useQuasar } from 'quasar'
 
-export default {
-  name: 'SearchDetail',
-  props: ['item'],
-  data() {
-    return {
-      dialog: false,
-      highlightedHtml: '',
-      markOptions: {
-        accuracy: 'complementary',
-        ignoreJoiners: true,
-        acrossElements: true,
-      },
-    }
-  },
-  methods: {
-    show(keywords) {
-      this.keywords = keywords
-      this.dialog = true
-    },
-    onShow(ev) {
-      console.log('onShow', ev)
-      this.performMark('#content', this.keywords, this.markOptions)
-    },
-    performMark(selector, keywords, options) {
-      var markInstance = new Mark(document.querySelector(selector))
-      console.log('Selector', document.querySelector(selector))
+const $q = useQuasar()
+// Define props and reactive state variables
 
-      console.log('markInstance', markInstance)
+const props = defineProps<{
+  item: SearchResult
+}>()
 
-      markInstance.unmark({
-        done: function () {
-          markInstance.mark(keywords, options)
-        },
-      })
-    },
-  },
+const dialog = ref(false)
+// const highlightedHtml = ref('')
+const markOptions = ref({
+  accuracy: 'complementary',
+  ignoreJoiners: true,
+  acrossElements: true,
+})
+const keywords = ref(<string[]>[])
+
+// Import functions for reactivity and lifecycle hooks
+
+// Define methods
+const show = () => {
+  // keywords = keywords // Assuming keywords is a ref
+  dialog.value = true
 }
+const onShow = (ev: unknown) => {
+  console.log('onShow', ev)
+  performMark('#content', keywords.value, markOptions.value)
+}
+const performMark = (selector: string, keywords: string[], options: any) => {
+  const markInstance = new Mark(document.querySelector(selector))
+  console.log('Selector', document.querySelector(selector))
+  console.log('markInstance', markInstance)
+
+  markInstance.unmark({
+    done: () => {
+      markInstance.mark(keywords, options)
+    },
+  })
+}
+defineExpose({
+  show,
+})
+
+// Use onMounted for the onShow logic
+onMounted(() => {
+  console.log('onShow')
+  performMark('#content', keywords.value, markOptions.value)
+})
 </script>
 
 <style lang="sass" scoped>
@@ -77,5 +89,5 @@ h1
       max-width: 80vw
 
 mark
-  background-color yellow
+  background-color: yellow
 </style>
