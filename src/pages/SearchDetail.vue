@@ -1,6 +1,6 @@
 <template>
   <q-dialog
-    v-if="item"
+    v-if="props.item"
     v-model="dialog"
     @show="onShow"
     @hide="dialog = false"
@@ -11,10 +11,11 @@
         <q-btn flat icon="close" v-close-popup clickable></q-btn>
       </q-card-actions>
       <q-card-section class="row justify-between">
-        <h1>{{ item.title }}</h1>
+        <h1>{{ props.item.title }}</h1>
       </q-card-section>
       <q-card-section class="row q-col-gutter-lg">
-        <div class="col-xs-12" v-html="item.descrizione" />
+        <div class="col-xs-12" v-html="props.item.description" />
+        <div>Testo per presenza</div>
       </q-card-section>
       <q-card-actions align="right">
         <q-btn flat icon="close" v-close-popup clickable></q-btn>
@@ -27,12 +28,13 @@ import { onMounted, ref, defineExpose } from 'vue'
 import Mark from 'mark.js'
 import { SearchResult } from '../stores/search-result'
 import { useQuasar } from 'quasar'
+import { log } from 'console'
 
 const $q = useQuasar()
 // Define props and reactive state variables
 
 const props = defineProps<{
-  item: SearchResult
+  item?: SearchResult
 }>()
 
 const dialog = ref(false)
@@ -47,13 +49,15 @@ const keywords = ref(<string[]>[])
 // Import functions for reactivity and lifecycle hooks
 
 // Define methods
-const show = () => {
-  // keywords = keywords // Assuming keywords is a ref
+const show = (keywords: string[]) => {
+  keywords.value = keywords // Assuming keywords is a ref
+  console.log('show: keywords:', keywords.value)
   dialog.value = true
 }
 const onShow = (ev: unknown) => {
   console.log('onShow', ev)
-  performMark('#content', keywords.value, markOptions.value)
+  console.log('keyword.value: ', keywords.value, ' --- ', markOptions.value)
+  // performMark('#content', keywords.value, markOptions.value)
 }
 const performMark = (selector: string, keywords: string[], options: any) => {
   const markInstance = new Mark(document.querySelector(selector))
